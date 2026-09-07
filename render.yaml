@@ -1,0 +1,32 @@
+services:
+  # Web Service
+  - type: web
+    name: civic-complaint-system
+    env: java
+    buildCommand: ./mvnw clean install -DskipTests
+    startCommand: java -Dserver.port=$PORT -Dspring.profiles.active=prod -jar target/complaintsystem-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: JAVA_TOOL_OPTIONS
+        value: -Xmx512m
+      - key: AI_PROVIDER
+        value: local
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: GOOGLE_CLOUD_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        fromDatabase:
+          name: complaint-database
+          property: connectionString
+      - key: DATABASE_USERNAME
+        value: root
+      - key: DATABASE_PASSWORD
+        fromDatabase:
+          name: complaint-database
+          property: password
+
+databases:
+  # MySQL Database
+  - name: complaint-database
+    databaseName: complaintdb
+    user: root

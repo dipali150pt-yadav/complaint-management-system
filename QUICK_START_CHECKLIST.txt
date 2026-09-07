@@ -1,0 +1,159 @@
+========================================
+AI-POWERED COMPLAINT SYSTEM
+QUICK START CHECKLIST
+========================================
+
+STEP 1: INSTALL JAVA 17
+========================
+[ ] Download from: https://adoptium.net/temurin/releases/
+    - Select: Version 17, Windows, x64
+[ ] Run installer, check "Add to PATH"
+[ ] Verify: Open new terminal, type: java -version
+    Expected: openjdk version "17.0.x"
+
+STEP 2: INSTALL MYSQL 8.0
+==========================
+[ ] Download from: https://dev.mysql.com/downloads/installer/
+[ ] Run installer, choose "Developer Default"
+[ ] Set root password: _________________ (WRITE IT DOWN!)
+[ ] Complete installation
+[ ] Verify: Open new terminal, type: mysql --version
+    Expected: mysql Ver 8.0.x
+
+STEP 3: CREATE DATABASE
+========================
+[ ] Open Command Prompt or PowerShell
+[ ] Type: mysql -u root -p
+[ ] Enter your MySQL password
+[ ] Type: CREATE DATABASE complaintdb;
+[ ] Type: SHOW DATABASES;
+    (You should see 'complaintdb' in the list)
+[ ] Type: EXIT;
+
+STEP 4: CONFIGURE PROJECT
+==========================
+[ ] Open file: src\main\resources\application.properties
+[ ] Find line: spring.datasource.password=12345678
+[ ] Change to: spring.datasource.password=YOUR_MYSQL_PASSWORD
+[ ] Save file
+
+STEP 5: BUILD PROJECT (FIRST TIME)
+===================================
+[ ] Open terminal in project folder:
+    c:\Users\littl\OneDrive\Documents\complaint-Management-System
+[ ] Type: mvnw.cmd clean install
+[ ] Wait 5-10 minutes (downloads dependencies)
+[ ] Look for: "BUILD SUCCESS"
+
+STEP 6: RUN APPLICATION
+========================
+[ ] In same terminal, type: mvnw.cmd spring-boot:run
+[ ] Wait for: "Started ComplaintsystemApplication in X.XXX seconds"
+[ ] Keep terminal open (don't close it)
+
+STEP 7: TEST APPLICATION
+=========================
+[ ] Open browser
+[ ] Visit: http://localhost:8080/home
+[ ] Upload test image (name it: pothole.jpg or garbage.jpg)
+[ ] Submit complaint
+[ ] Get complaint ID
+
+STEP 8: TEST ADMIN DASHBOARD
+=============================
+[ ] Visit: http://localhost:8080/admin
+[ ] Username: admin
+[ ] Password: admin123
+[ ] See your complaint in the table
+
+========================================
+✅ SUCCESS! Your AI system is running!
+========================================
+
+TO STOP: Press Ctrl + C in terminal
+TO START AGAIN: mvnw.cmd spring-boot:run
+
+========================================
+OPTIONAL: ENABLE AI FEATURES
+========================================
+
+For better AI analysis (optional):
+
+OPTION A: OpenAI (Recommended)
+-------------------------------
+[ ] Sign up: https://platform.openai.com/
+[ ] Get API key: https://platform.openai.com/api-keys
+[ ] Edit application.properties:
+    ai.provider=openai
+    openai.api.key=sk-proj-YOUR_KEY
+[ ] Restart application
+
+OPTION B: Google Cloud Vision
+------------------------------
+[ ] Create project: https://console.cloud.google.com/
+[ ] Enable Vision API
+[ ] Get API key
+[ ] Edit application.properties:
+    ai.provider=google
+    google.cloud.vision.api.key=YOUR_KEY
+[ ] Restart application
+
+========================================
+COMMON ERRORS & SOLUTIONS
+========================================
+
+ERROR: "java is not recognized"
+SOLUTION: Java not installed. Go back to Step 1.
+
+ERROR: "mysql is not recognized"
+SOLUTION: MySQL not installed. Go back to Step 2.
+
+ERROR: "Access denied for user 'root'"
+SOLUTION: Wrong password in application.properties. Check Step 4.
+
+ERROR: "Port 8080 is already in use"
+SOLUTION: Another app is using port 8080.
+    - Stop other app, OR
+    - Change port in application.properties to 8081
+
+ERROR: "Table doesn't exist"
+SOLUTION: Database not created. Go back to Step 3.
+
+========================================
+DOWNLOADS SUMMARY
+========================================
+
+1. Java JDK 17:
+   https://adoptium.net/temurin/releases/
+
+2. MySQL 8.0:
+   https://dev.mysql.com/downloads/installer/
+
+========================================
+PROJECT ACCESS URLS
+========================================
+
+Home Page (Citizens):
+http://localhost:8080/home
+
+Admin Dashboard:
+http://localhost:8080/admin
+Username: admin
+Password: admin123
+
+Login Page:
+http://localhost:8080/login
+
+Track Complaint:
+http://localhost:8080/track
+
+========================================
+NEED MORE HELP?
+========================================
+
+See detailed guides:
+- RUN_PROJECT.md (step-by-step commands)
+- SETUP_GUIDE.md (detailed setup)
+- README.md (full documentation)
+
+========================================
