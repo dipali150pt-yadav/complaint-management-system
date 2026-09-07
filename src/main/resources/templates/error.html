@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Complaint Management System</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px;
+        }
+        .error-container {
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            text-align: center;
+            max-width: 500px;
+        }
+        h1 {
+            color: #e74c3c;
+            font-size: 72px;
+            margin: 0;
+        }
+        h2 {
+            color: #2c3e50;
+            margin: 10px 0;
+        }
+        p {
+            color: #7f8c8d;
+            margin: 20px 0;
+        }
+        .error-details {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: left;
+        }
+        .btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 25px;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 20px;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="error-container">
+        <h1>⚠️</h1>
+        <h2>Oops! Something went wrong</h2>
+        <p th:if="${status}">Error Status: <strong th:text="${status}">500</strong></p>
+        <p th:if="${error}">Error Type: <strong th:text="${error}">Internal Server Error</strong></p>
+        
+        <div class="error-details" th:if="${message}">
+            <strong>Message:</strong><br>
+            <span th:text="${message}">An unexpected error occurred</span>
+        </div>
+        
+        <div class="error-details" th:if="${path}">
+            <strong>Path:</strong><br>
+            <span th:text="${path}">/</span>
+        </div>
+        
+        <a href="/home" class="btn">🏠 Go to Home</a>
+        <a href="/login" class="btn">🔐 Go to Login</a>
+    </div>
+</body>
+</html>
