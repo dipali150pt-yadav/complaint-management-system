@@ -2,27 +2,210 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Complaint Submitted</title>
+    <title>Complaint Submitted - Nagar Nigam</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        .success-card {
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            background: white;
+            overflow: hidden;
+        }
+        .success-header {
+            background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+        .checkmark {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #28a745;
+            animation: scaleIn 0.5s ease-in-out;
+        }
+        @keyframes scaleIn {
+            0% { transform: scale(0); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+        .complaint-id {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #667eea;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        .info-box {
+            background: #f8f9ff;
+            border-left: 4px solid #667eea;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 5px;
+        }
+        .ai-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            display: inline-block;
+            margin: 5px;
+        }
+        .severity-badge {
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 1rem;
+        }
+        .severity-CRITICAL { background: #dc3545; color: white; }
+        .severity-HIGH { background: #fd7e14; color: white; }
+        .severity-MEDIUM { background: #ffc107; color: black; }
+        .severity-LOW { background: #28a745; color: white; }
+        .btn-action {
+            margin: 10px 5px;
+            padding: 12px 30px;
+            border-radius: 10px;
+            font-weight: bold;
+        }
+    </style>
 </head>
 
-<body class="bg-light">
+<body>
 
-<div class="container mt-5 text-center">
+<div class="container py-5">
+    
+    <div class="success-card">
+        
+        <!-- Success Header -->
+        <div class="success-header">
+            <div class="checkmark">
+                <i class="bi bi-check-lg"></i>
+            </div>
+            <h2>✅ Complaint Successfully Submitted!</h2>
+            <p class="mb-0">Your civic issue has been registered and analyzed by AI</p>
+        </div>
 
-    <h2 class="text-success">Complaint Submitted Successfully</h2>
+        <!-- Details Section -->
+        <div class="p-4 p-md-5">
 
-    <p>Your Complaint ID:</p>
+            <!-- Complaint ID -->
+            <div class="text-center mb-4">
+                <h5 class="text-muted">Your Complaint ID</h5>
+                <div class="complaint-id" th:text="${complaintId}">12345</div>
+                <small class="text-muted">Save this ID to track your complaint status</small>
+            </div>
 
-    <h1 th:text="${complaintId}"></h1>
+            <hr>
 
-    <!-- AI Detected Category -->
-    <p class="mt-3">Complaint Category:</p>
-    <h4 class="text-info" th:text="${category}"></h4>
+            <!-- AI Analysis Results -->
+            <div class="row">
+                
+                <div class="col-md-6 mb-3">
+                    <div class="info-box">
+                        <h6><i class="bi bi-tag-fill text-primary"></i> Issue Category</h6>
+                        <h5 class="mb-0" th:text="${category}">ROADS & INFRASTRUCTURE</h5>
+                    </div>
+                </div>
 
-    <p class="mt-3">Use this ID to track your complaint.</p>
+                <div class="col-md-6 mb-3">
+                    <div class="info-box">
+                        <h6><i class="bi bi-building text-primary"></i> Assigned Department</h6>
+                        <h5 class="mb-0" th:text="${department}">Roads & Infrastructure</h5>
+                    </div>
+                </div>
 
-    <a href="/" class="btn btn-primary mt-3">Go Home</a>
+                <div class="col-md-4 mb-3">
+                    <div class="info-box text-center">
+                        <h6><i class="bi bi-exclamation-triangle text-warning"></i> Severity</h6>
+                        <span th:class="'severity-badge severity-' + ${severity}" th:text="${severity}">HIGH</span>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <div class="info-box text-center">
+                        <h6><i class="bi bi-star-fill text-warning"></i> Priority</h6>
+                        <h4 class="mb-0 text-primary" th:text="${priority}">2</h4>
+                    </div>
+                </div>
+
+                <div class="col-md-4 mb-3">
+                    <div class="info-box text-center">
+                        <h6><i class="bi bi-robot text-info"></i> AI Confidence</h6>
+                        <h4 class="mb-0 text-success" th:text="${confidence}">95%</h4>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- AI Generated Description -->
+            <div class="info-box" th:if="${description}">
+                <h6><i class="bi bi-chat-square-text text-primary"></i> AI Analysis</h6>
+                <p class="mb-0" th:text="${description}">
+                    Road damage detected. Requires immediate repair to prevent accidents.
+                </p>
+            </div>
+
+            <!-- Detected Issues -->
+            <div class="mb-4" th:if="${detectedIssues}">
+                <h6><i class="bi bi-list-check text-primary"></i> Detected Issues:</h6>
+                <div>
+                    <span class="ai-badge" th:each="issue : ${#strings.arraySplit(detectedIssues, ',')}" 
+                          th:text="${#strings.trim(issue)}">
+                        Pothole
+                    </span>
+                </div>
+            </div>
+
+            <!-- Estimated Resolution -->
+            <div class="alert alert-info text-center" th:if="${estimatedResolution}">
+                <i class="bi bi-clock-history"></i>
+                <strong>Estimated Resolution Time:</strong>
+                <span th:text="${estimatedResolution}">2-3 business days</span>
+            </div>
+
+            <!-- Message -->
+            <div class="alert alert-success" th:if="${message}">
+                <pre th:text="${message}" style="white-space: pre-wrap; font-family: inherit; margin: 0;">
+Thank you for reporting this civic issue!
+                </pre>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="text-center mt-4">
+                <a href="/track" class="btn btn-primary btn-action">
+                    <i class="bi bi-search"></i> Track This Complaint
+                </a>
+                <a href="/home" class="btn btn-outline-primary btn-action">
+                    <i class="bi bi-plus-circle"></i> Submit Another
+                </a>
+                <button onclick="window.print()" class="btn btn-outline-secondary btn-action">
+                    <i class="bi bi-printer"></i> Print Receipt
+                </button>
+            </div>
+
+            <!-- Information -->
+            <div class="mt-5 text-center">
+                <small class="text-muted">
+                    <i class="bi bi-info-circle"></i>
+                    You will receive updates as your complaint is processed. 
+                    You can track the status anytime using your Complaint ID.
+                </small>
+            </div>
+
+        </div>
+
+    </div>
 
 </div>
 

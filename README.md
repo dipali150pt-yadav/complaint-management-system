@@ -1,288 +1,341 @@
-# Complaint Management System
+# 🚀 AI-Powered Civic Complaint Management System
 
-An AI-powered Complaint Management System built using Spring Boot, Thymeleaf, MySQL, and Bootstrap that allows users to submit complaints with optional images while automatically categorizing and assigning them to the appropriate department using AI logic.
+An intelligent complaint management system for **Nagar Nigam (Municipal Corporation)** that uses **AI-powered computer vision** to automatically analyze, categorize, and route civic complaints. Citizens simply upload a photo of the issue, and AI handles the rest!
 
-Admins can monitor, resolve, and manage complaints through a dedicated dashboard.
+## ✨ Key Features
 
----
+### 🤖 AI-Powered Features
+- **Automatic Image Analysis** - Upload a photo and AI identifies the issue
+- **Smart Categorization** - Automatically detects issue type (roads, sanitation, lighting, etc.)
+- **Department Routing** - AI assigns complaints to the correct municipal department
+- **Severity Detection** - Identifies urgency level (Critical, High, Medium, Low)
+- **Auto-Generated Descriptions** - Creates detailed complaint descriptions from images
+- **Confidence Scoring** - Shows AI confidence level for transparency
 
-## Features
+### 👥 Citizen Features
+- **Photo Upload** - Simply take a picture of the civic issue
+- **GPS Location** - Automatic location capture from device
+- **Complaint Tracking** - Track status using complaint ID
+- **Multiple Issue Types** - Supports 10+ civic issue categories
+- **Anonymous Reporting** - Optional name/contact submission
+- **Real-time Analysis** - Instant AI analysis and categorization
 
-### User Features
+### 🛠️ Admin Features
+- **Comprehensive Dashboard** - View all complaints with AI insights
+- **Advanced Analytics** - Statistics by category, department, severity
+- **AI Confidence Metrics** - Monitor AI accuracy and performance
+- **Priority Management** - Sort by urgency and priority levels
+- **Department-wise View** - Filter complaints by assigned department
+- **Image Viewer** - Review uploaded complaint images
+- **Status Management** - Mark complaints as resolved/pending
 
+## 🎯 Supported Civic Issues
 
+The system can automatically detect and categorize:
 
-* Secure login system
-* Submit complaints
-* Upload complaint images
-* AI-based complaint categorization
-* Automatic department assignment
-* Complaint tracking using complaint ID
+1. **Roads & Infrastructure** - Potholes, damaged roads, broken pavements
+2. **Sanitation** - Garbage accumulation, waste management issues
+3. **Street Lighting** - Broken streetlights, non-functional lamps
+4. **Water & Drainage** - Water leakage, drainage blockage, flooding
+5. **Electricity** - Power outages, electrical hazards, transformer issues
+6. **Parks & Gardens** - Park maintenance, tree cutting needs
+7. **Stray Animals** - Animal control issues
+8. **Illegal Construction** - Unauthorized construction, encroachment
+9. **Public Facilities** - Public toilet issues, washroom maintenance
+10. **Traffic & Parking** - Traffic signal problems, parking issues
 
-### Admin Features
-
-* Admin dashboard
-* View all complaints
-* Complaint statistics
-* Resolve complaints
-* Delete complaints
-* View uploaded images
-
-### AI Features
-
-* Automatic complaint category detection
-* Automatic department assignment
-
-Example:
-
-Complaint Text:
-"food and ac problem"
-
-AI Output:
-
-Category → AC, FOOD
-Department → Maintenance
-
----
-
-## Tech Stack
+## 🏗️ Technology Stack
 
 ### Backend
+- **Java 17** - Core programming language
+- **Spring Boot 3.3.5** - Application framework
+- **Spring Data JPA** - Database operations
+- **Spring Security** - Authentication & authorization
+- **Hibernate** - ORM framework
+- **MySQL** - Database
 
-* Java
-* Spring Boot
-* Spring MVC
-* Spring Data JPA
-* Hibernate
+### AI & ML
+- **OpenAI GPT-4 Vision API** - Primary image analysis (Recommended)
+- **Google Cloud Vision API** - Alternative image analysis
+- **Local Rule-Based Analysis** - Fallback when APIs unavailable
+- **WebFlux** - Reactive HTTP client for API calls
 
 ### Frontend
+- **Thymeleaf** - Server-side templating
+- **Bootstrap 5** - UI framework
+- **Bootstrap Icons** - Icon library
+- **HTML5/CSS3/JavaScript** - Core web technologies
 
-* Thymeleaf
-* HTML
-* CSS
-* Bootstrap
+## 📋 Prerequisites
 
-### Database
+Before you begin, ensure you have:
 
-* MySQL
+1. **Java Development Kit (JDK) 17+**
+2. **MySQL 8.0+**
+3. **Maven 3.6+** (optional - included in project)
+4. **IDE** (IntelliJ IDEA, Eclipse, or VS Code)
+5. **AI API Key** (optional but recommended) - OpenAI OR Google Cloud Vision
 
-### Tools
-
-* IntelliJ IDEA
-* Git
-* GitHub
-* Maven
-
----
-
-## Application Screenshots
-
-### Login Page
-
-<img width="1440" height="900" alt="Screenshot 2026-03-09 at 11 49 59 PM" src="https://github.com/user-attachments/assets/3ff31c05-9b68-4180-ba37-280387f601c9" />
-  
-Users and admins log in from a single login page.
-Default Credentials
-
-Admin
-Username: admin
-Password: admin123
-
-User
-Username: user
-Password: user123
-
----
-
-### User Complaint Submission Page
-<img width="1440" height="900" alt="Screenshot 2026-03-09 at 11 50 32 PM" src="https://github.com/user-attachments/assets/a5f7db47-944b-409d-bafb-b8a9a02526f8" />
-
-
-Users can submit complaints and attach an optional image.
-
----
-
-### Complaint Submission Success Page
-<img width="1440" height="900" alt="Screenshot 2026-03-09 at 11 50 39 PM" src="https://github.com/user-attachments/assets/1a94f89d-493e-4069-abc7-40d5195b4af2" />
-
-
-After submission, the system generates a unique complaint ID for tracking.
-
-Example:
-Complaint ID → 10
-Category → AC, FOOD
-
----
-
-### Admin Dashboard
-<img width="1440" height="900" alt="Screenshot 2026-03-09 at 11 51 05 PM" src="https://github.com/user-attachments/assets/932f395e-d9d7-4f8a-b0aa-6ce1b18175bd" />
-
-
-Admins can monitor all complaints from a centralized dashboard.
-
-Features:
-
-* Total complaints
-* Pending complaints
-* Resolved complaints
-* Complaint list
-* Department assignment
-* Resolve / Delete actions
-
----
-
-## Project Structure
-
-complaint-management-system
-
-controller
-HomeController.java
-
-model
-Complaint.java
-User.java
-
-repository
-ComplaintRepository.java
-UserRepository.java
-
-service
-AIService.java
-
-config
-SecurityConfig.java
-
-templates
-login.html
-index.html
-success.html
-admin.html
-track.html
-
-resources
-application.properties
-
----
-
-## Installation & Setup
+## 🚀 Quick Start
 
 ### 1. Clone the Repository
 
-git clone https://github.com/vivekbehera240/complaint-management-system.git
+```bash
+git clone https://github.com/dipali150pt-yadav/complaint-management-system.git
+cd complaint-management-system
+```
 
----
+### 2. Setup MySQL Database
 
-### 2. Open Project in IntelliJ
-
-Open the folder in IntelliJ IDEA.
-
----
-
-### 3. Setup MySQL Database
-
-Create database:
-
+```sql
 CREATE DATABASE complaintdb;
+```
 
----
+### 3. Configure Application
 
-### 4. Update application.properties
+Edit `src/main/resources/application.properties`:
 
+```properties
+# Database
 spring.datasource.url=jdbc:mysql://localhost:3306/complaintdb
 spring.datasource.username=root
-spring.datasource.password=yourpassword
+spring.datasource.password=YOUR_PASSWORD
 
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
+# AI Provider (local/openai/google)
+ai.provider=local
+```
 
----
+### 4. Optional: Add AI API Key
+
+For better accuracy, configure an AI provider:
+
+#### OpenAI (Recommended)
+```properties
+ai.provider=openai
+openai.api.key=sk-proj-YOUR_KEY
+```
+Get key: https://platform.openai.com/api-keys
+
+#### Google Cloud Vision
+```properties
+ai.provider=google
+google.cloud.vision.api.key=YOUR_KEY
+```
+Get key: https://console.cloud.google.com/apis/credentials
 
 ### 5. Run the Application
 
-Run:
+```bash
+# Windows
+mvnw.cmd spring-boot:run
 
-ComplaintsystemApplication.java
+# Linux/Mac
+./mvnw spring-boot:run
+```
 
-Or using Maven:
+### 6. Access the Application
 
-mvn spring-boot:run
+- **Home**: http://localhost:8080/home
+- **Admin**: http://localhost:8080/admin
+- **Login**: http://localhost:8080/login
+
+## 🔐 Default Credentials
+
+| Role  | Username | Password   |
+|-------|----------|------------|
+| Admin | admin    | admin123   |
+| User  | user     | user123    |
+
+⚠️ **Change these in production!**
+
+## 📖 How to Use
+
+### For Citizens
+
+1. Visit http://localhost:8080/home
+2. Upload a photo of the civic issue
+3. (Optional) Add location, landmark, contact details
+4. Submit - AI analyzes automatically
+5. Save your Complaint ID to track status
+
+### For Admins
+
+1. Login at http://localhost:8080/login
+2. View dashboard with AI-powered analytics
+3. Review complaints with:
+   - AI confidence scores
+   - Severity levels
+   - Auto-assigned departments
+4. Resolve or manage complaints
+
+## 🏗️ Project Structure
+
+```
+complaint-management-system/
+├── src/main/java/com/cms/complaintsystem/
+│   ├── ComplaintsystemApplication.java
+│   ├── controller/
+│   │   ├── AdminController.java
+│   │   ├── AuthController.java
+│   │   └── HomeController.java
+│   ├── model/
+│   │   ├── Complaint.java (Enhanced with AI fields)
+│   │   └── User.java
+│   ├── repository/
+│   │   ├── ComplaintRepository.java
+│   │   └── UserRepository.java
+│   ├── service/
+│   │   ├── AIService.java (Civic categorization)
+│   │   ├── ImageAnalysisService.java (Computer vision)
+│   │   └── ComplaintGenerationService.java (Orchestration)
+│   └── config/
+│       ├── SecurityConfig.java
+│       └── WebConfig.java
+├── src/main/resources/
+│   ├── application.properties
+│   ├── application.properties.example
+│   └── templates/ (Enhanced Thymeleaf UI)
+├── uploads/ (Complaint images)
+└── pom.xml
+```
+
+## 🔧 Configuration Options
+
+### AI Settings
+
+```properties
+# Provider: local, openai, or google
+ai.provider=local
+
+# Enable AI analysis
+app.ai.enabled=true
+
+# Confidence threshold (0.0-1.0)
+app.ai.confidence.threshold=0.6
+
+# Auto-assign department
+app.ai.auto.assign=true
+```
+
+### Upload Settings
+
+```properties
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=10MB
+app.upload.dir=${user.dir}/uploads
+```
+
+## 🧪 Testing the AI Features
+
+### Test with Local AI (No API needed)
+- Name images descriptively: `pothole.jpg`, `garbage.png`, `streetlight.jpg`
+- System detects issues from filename
+
+### Test with OpenAI (Best results)
+- Configure API key
+- Upload real civic issue photos
+- Review AI analysis accuracy
+
+### Test Different Issue Types
+- **Roads**: Pothole, cracked pavement
+- **Sanitation**: Garbage accumulation
+- **Lighting**: Broken streetlight
+- **Water**: Leakage, flooding
+
+## 🚨 Troubleshooting
+
+| Issue | Solution |
+|-------|----------|
+| Database connection error | Check MySQL credentials in application.properties |
+| AI API 401 error | Verify API key is correct |
+| Image upload fails | Check file size limit (max 10MB) |
+| Port 8080 in use | Change `server.port` or stop conflicting service |
+
+### Enable Debug Logging
+
+```properties
+logging.level.com.cms.complaintsystem=DEBUG
+```
+
+## 🔐 Security for Production
+
+1. Change default admin/user passwords
+2. Use environment variables for API keys
+3. Enable HTTPS
+4. Use strong database passwords
+5. Implement rate limiting
+
+## 🚀 Deployment
+
+### Heroku
+```bash
+heroku create nagar-nigam-app
+heroku addons:create cleardb:ignite
+git push heroku main
+```
+
+### Docker
+```dockerfile
+FROM openjdk:17-jdk-slim
+COPY target/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
+```
+
+### Cloud Platforms
+- AWS EC2/Elastic Beanstalk
+- Google Cloud Run
+- Azure App Service
+- Render
+- Railway
+
+## 📊 Database Schema
+
+Enhanced `complaint` table with 20+ fields:
+- Basic: id, text, category, department, status, imagePath
+- AI: aiConfidence, detectedIssues, autoGeneratedDescription, severity, priority
+- Location: latitude, longitude, address, landmark
+- Metadata: submittedAt, resolvedAt, submittedBy, contactNumber
+
+## 🤝 Contributing
+
+Contributions welcome! Please:
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## 📝 Future Enhancements
+
+- [ ] SMS/Email notifications
+- [ ] Mobile app (Android/iOS)
+- [ ] Multi-language support (Hindi, Regional languages)
+- [ ] Real-time chat for complaints
+- [ ] Analytics dashboard with charts
+- [ ] Citizen feedback/ratings
+- [ ] Voice-based complaints
+- [ ] Integration with government portals
+
+## 📄 License
+
+MIT License - Open source
+
+## 👥 Credits
+
+**Original Project**: [vivekbehera240](https://github.com/vivekbehera240)  
+**AI Enhancement**: Computer vision and civic complaint features
+
+## 🌟 Acknowledgments
+
+- Spring Boot Framework
+- OpenAI GPT-4 Vision API
+- Google Cloud Vision API
+- Bootstrap 5
+- Thymeleaf
 
 ---
 
-### 6. Open in Browser
+**Made with ❤️ for Better Civic Services**
 
-http://localhost:8080
+*Empowering citizens to report issues easily, and helping municipalities respond efficiently through AI!*
 
----
-
-## Database Tables
-
-Main tables used:
-
-complaint
-
-id - bigint
-text - varchar
-category - varchar
-department - varchar
-status - varchar
-imagePath - varchar
-
----
-
-## Future Improvements
-
-Possible improvements:
-
-* JWT authentication
-* Real AI model integration
-* Email notification system
-* Complaint comments system
-* Role-based authentication
-* Mobile responsive UI improvements
-* Cloud deployment
-
----
-
-## Deployment Options
-
-The project can be deployed on:
-
-* Render
-* Railway
-* AWS
-* Heroku
-* DigitalOcean
-
----
-
-## Author
-
-Developed by
-
-Vivek Behera 
-
-GitHub
-https://github.com/vivekbehera240
-
----
-
-## Support
-
-If you like this project:
-
-Star the repository on GitHub
-Fork the project
-Contribute improvements
-
----
-
-## Final Result
-
-This system provides a complete complaint handling workflow:
-
-User submits complaint →
-AI categorizes issue →
-Department auto-assigned →
-Admin resolves complaint →
-User tracks status
+For questions or support, create an issue on GitHub.

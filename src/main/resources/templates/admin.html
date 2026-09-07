@@ -2,115 +2,321 @@
 <html xmlns:th="http://www.thymeleaf.org">
 
 <head>
-    <title>Admin Dashboard</title>
-
+    <title>Admin Dashboard - Nagar Nigam</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <style>
+        body {
+            background: #f5f7fa;
+        }
+        .dashboard-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        .stat-card {
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            border: none;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+        }
+        .stat-icon {
+            font-size: 2.5rem;
+            opacity: 0.8;
+        }
+        .table-container {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .priority-badge {
+            font-weight: bold;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .priority-1 { background: #dc3545; color: white; }
+        .priority-2 { background: #fd7e14; color: white; }
+        .priority-3 { background: #ffc107; color: black; }
+        .priority-4 { background: #28a745; color: white; }
+        .severity-CRITICAL { background: #dc3545; color: white; }
+        .severity-HIGH { background: #fd7e14; color: white; }
+        .severity-MEDIUM { background: #ffc107; color: black; }
+        .severity-LOW { background: #28a745; color: white; }
+        .confidence-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.85rem;
+        }
+        .mini-chart {
+            background: #f8f9ff;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+    </style>
 </head>
 
-<body class="bg-light">
+<body>
 
-<div class="container mt-5">
+<div class="container-fluid py-4">
 
-    <h2 class="mb-4">Admin Dashboard</h2>
+    <!-- Header -->
+    <div class="dashboard-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h2><i class="bi bi-speedometer2"></i> Admin Dashboard</h2>
+                <p class="mb-0">Nagar Nigam - AI-Powered Complaint Management</p>
+            </div>
+            <div>
+                <a href="/home" class="btn btn-light">
+                    <i class="bi bi-house-door"></i> Home
+                </a>
+                <a href="/login" class="btn btn-outline-light">
+                    <i class="bi bi-box-arrow-right"></i> Logout
+                </a>
+            </div>
+        </div>
+    </div>
 
-    <!-- Complaint Statistics -->
+    <!-- Statistics Cards -->
     <div class="row mb-4">
-
-        <div class="col-md-4">
-            <div class="card text-center bg-primary text-white">
-                <div class="card-body">
-                    <h5>Total Complaints</h5>
-                    <h2 th:text="${total}"></h2>
+        
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card stat-card bg-primary text-white">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-uppercase mb-1">Total Complaints</h6>
+                        <h2 class="mb-0" th:text="${total}">0</h2>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="bi bi-file-earmark-text"></i>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card text-center bg-warning text-dark">
-                <div class="card-body">
-                    <h5>Pending</h5>
-                    <h2 th:text="${pending}"></h2>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card stat-card bg-warning text-dark">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-uppercase mb-1">Pending</h6>
+                        <h2 class="mb-0" th:text="${pending}">0</h2>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="bi bi-clock-history"></i>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="col-md-4">
-            <div class="card text-center bg-success text-white">
-                <div class="card-body">
-                    <h5>Resolved</h5>
-                    <h2 th:text="${resolved}"></h2>
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card stat-card bg-success text-white">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-uppercase mb-1">Resolved</h6>
+                        <h2 class="mb-0" th:text="${resolved}">0</h2>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="bi bi-check-circle"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6 mb-3">
+            <div class="card stat-card bg-danger text-white">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h6 class="text-uppercase mb-1">High Priority</h6>
+                        <h2 class="mb-0" th:text="${highPriority}">0</h2>
+                    </div>
+                    <div class="stat-icon">
+                        <i class="bi bi-exclamation-triangle"></i>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
 
+    <!-- AI Analytics -->
+    <div class="row mb-4">
+        <div class="col-md-3">
+            <div class="card stat-card">
+                <h6><i class="bi bi-robot text-primary"></i> Average AI Confidence</h6>
+                <h3 class="text-primary mb-0" th:text="${avgConfidence}">0%</h3>
+            </div>
+        </div>
+    </div>
+
     <!-- Complaints Table -->
-    <table class="table table-bordered table-striped">
+    <div class="table-container">
+        
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h4><i class="bi bi-list-ul"></i> All Complaints</h4>
+            <div>
+                <button class="btn btn-sm btn-outline-primary" onclick="location.reload()">
+                    <i class="bi bi-arrow-clockwise"></i> Refresh
+                </button>
+            </div>
+        </div>
 
-        <thead class="table-dark">
-        <tr>
-            <th>ID</th>
-            <th>Complaint</th>
-            <th>Category</th>
-            <th>Department</th>
-            <th>Status</th>
-            <th>Image</th>
-            <th>Actions</th>
-        </tr>
-        </thead>
+        <div class="table-responsive">
+            <table class="table table-hover">
+                
+                <thead class="table-light">
+                <tr>
+                    <th>ID</th>
+                    <th>Submitted</th>
+                    <th>Citizen</th>
+                    <th>Issue Description</th>
+                    <th>Category</th>
+                    <th>Department</th>
+                    <th>Severity</th>
+                    <th>Priority</th>
+                    <th>AI Confidence</th>
+                    <th>Location</th>
+                    <th>Status</th>
+                    <th>Image</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
 
-        <tbody>
+                <tbody>
+                <tr th:each="c : ${complaints}">
+                    
+                    <!-- ID -->
+                    <td><strong th:text="${c.id}">1</strong></td>
 
-        <tr th:each="c : ${complaints}">
+                    <!-- Submitted Time -->
+                    <td>
+                        <small th:if="${c.submittedAt}" th:text="${#temporals.format(c.submittedAt, 'dd-MM-yyyy HH:mm')}">
+                            01-01-2024 10:00
+                        </small>
+                        <small th:unless="${c.submittedAt}">-</small>
+                    </td>
 
-            <td th:text="${c.id}"></td>
+                    <!-- Citizen -->
+                    <td>
+                        <div th:text="${c.submittedBy}">Anonymous</div>
+                        <small class="text-muted" th:if="${c.contactNumber}" th:text="${c.contactNumber}"></small>
+                    </td>
 
-            <td th:text="${c.text}"></td>
+                    <!-- Description -->
+                    <td style="max-width: 250px;">
+                        <div th:if="${c.autoGeneratedDescription}" 
+                             th:text="${#strings.abbreviate(c.autoGeneratedDescription, 80)}"
+                             style="font-size: 0.9rem;">
+                            AI-generated description
+                        </div>
+                        <div th:unless="${c.autoGeneratedDescription}" 
+                             th:text="${#strings.abbreviate(c.text, 80)}"
+                             style="font-size: 0.9rem;">
+                            Complaint text
+                        </div>
+                    </td>
 
-            <!-- Category Badge -->
-            <td>
-                <span class="badge bg-primary" th:if="${c.category == 'AC'}" th:text="${c.category}"></span>
-                <span class="badge bg-success" th:if="${c.category == 'Food'}" th:text="${c.category}"></span>
-                <span class="badge bg-warning text-dark" th:if="${c.category == 'Furniture'}" th:text="${c.category}"></span>
-                <span class="badge bg-danger" th:if="${c.category == 'Electrical'}" th:text="${c.category}"></span>
-                <span class="badge bg-secondary" th:if="${c.category == 'Cleaning'}" th:text="${c.category}"></span>
-            </td>
+                    <!-- Category -->
+                    <td>
+                        <span class="badge bg-info" th:text="${c.category}">Category</span>
+                    </td>
 
-            <!-- Department -->
-            <td>
-                <span class="badge bg-info text-dark" th:text="${c.department}"></span>
-            </td>
+                    <!-- Department -->
+                    <td>
+                        <span class="badge bg-secondary" th:text="${c.department}">Department</span>
+                    </td>
 
-            <!-- Status -->
-            <td>
-                <span class="badge bg-warning" th:text="${c.status}"></span>
-            </td>
+                    <!-- Severity -->
+                    <td>
+                        <span th:if="${c.severity}" 
+                              th:class="'badge severity-' + ${c.severity}" 
+                              th:text="${c.severity}">
+                            MEDIUM
+                        </span>
+                        <span th:unless="${c.severity}" class="text-muted">-</span>
+                    </td>
 
-            <!-- Image -->
-            <td>
-                <img th:src="@{${c.imagePath}}" width="120"/>
-            </td>
+                    <!-- Priority -->
+                    <td>
+                        <span th:if="${c.priority}" 
+                              th:class="'priority-badge priority-' + ${c.priority}" 
+                              th:text="${c.priority}">
+                            3
+                        </span>
+                        <span th:unless="${c.priority}" class="text-muted">-</span>
+                    </td>
 
-            <!-- Actions -->
-            <td>
+                    <!-- AI Confidence -->
+                    <td>
+                        <span th:if="${c.aiConfidence}" class="confidence-badge">
+                            <i class="bi bi-robot"></i>
+                            <span th:text="${#numbers.formatDecimal(c.aiConfidence * 100, 0, 0)} + '%'">95%</span>
+                        </span>
+                        <span th:unless="${c.aiConfidence}" class="text-muted">-</span>
+                    </td>
 
-                <a th:href="@{'/resolve/' + ${c.id}}" class="btn btn-success btn-sm">
-                    Resolve
-                </a>
+                    <!-- Location -->
+                    <td style="max-width: 150px;">
+                        <small th:if="${c.address}" th:text="${#strings.abbreviate(c.address, 50)}">Address</small>
+                        <small th:unless="${c.address}" class="text-muted">No location</small>
+                    </td>
 
-                <a th:href="@{'/delete/' + ${c.id}}" class="btn btn-danger btn-sm">
-                    Delete
-                </a>
+                    <!-- Status -->
+                    <td>
+                        <span th:if="${c.status == 'Pending'}" class="badge bg-warning">Pending</span>
+                        <span th:if="${c.status == 'Resolved'}" class="badge bg-success">Resolved</span>
+                    </td>
 
-            </td>
+                    <!-- Image -->
+                    <td>
+                        <img th:if="${c.imagePath}" 
+                             th:src="@{'/uploads/' + ${#strings.substringAfterLast(c.imagePath, '/')}}" 
+                             width="80" 
+                             class="rounded"
+                             style="cursor: pointer;"
+                             onclick="window.open(this.src, '_blank')"/>
+                        <span th:unless="${c.imagePath}" class="text-muted">No image</span>
+                    </td>
 
-        </tr>
+                    <!-- Actions -->
+                    <td>
+                        <a th:if="${c.status == 'Pending'}" 
+                           th:href="@{'/resolve/' + ${c.id}}" 
+                           class="btn btn-success btn-sm mb-1">
+                            <i class="bi bi-check"></i> Resolve
+                        </a>
+                        
+                        <a th:href="@{'/delete/' + ${c.id}}" 
+                           class="btn btn-danger btn-sm mb-1"
+                           onclick="return confirm('Are you sure you want to delete this complaint?')">
+                            <i class="bi bi-trash"></i> Delete
+                        </a>
+                    </td>
 
-        </tbody>
+                </tr>
 
-    </table>
+                <tr th:if="${#lists.isEmpty(complaints)}">
+                    <td colspan="13" class="text-center text-muted py-5">
+                        <i class="bi bi-inbox" style="font-size: 3rem;"></i>
+                        <p class="mt-2">No complaints found</p>
+                    </td>
+                </tr>
+
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
 
 </div>
 
