@@ -28,11 +28,11 @@ public class HomeController {
     private ComplaintGenerationService complaintGenerationService;
 
     // =============================
-    // OPEN LOGIN PAGE FIRST
+    // ROOT PAGE - REDIRECT TO HOME
     // =============================
     @GetMapping("/")
     public String start() {
-        return "login";
+        return "redirect:/home";
     }
 
     // =============================
