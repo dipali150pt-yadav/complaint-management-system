@@ -261,7 +261,7 @@ public class ComplaintGenerationService {
             
             You can track your complaint status using the Complaint ID.
             
-            - Nagar Nigam Team
+            - Civic Administration Team
             """,
             complaint.getId(),
             complaint.getCategory(),

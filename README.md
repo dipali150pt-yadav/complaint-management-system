@@ -1,6 +1,6 @@
 # 🚀 AI-Powered Civic Complaint Management System
 
-An intelligent complaint management system for **Nagar Nigam (Municipal Corporation)** that uses **AI-powered computer vision** to automatically analyze, categorize, and route civic complaints. Citizens simply upload a photo of the issue, and AI handles the rest!
+An intelligent complaint management system for **Smart Municipal Corporations and Civic Bodies** that uses **AI-powered computer vision** to automatically analyze, categorize, and route civic complaints. Citizens simply upload a photo of the issue, and AI handles the rest!
 
 ## ✨ Key Features
 

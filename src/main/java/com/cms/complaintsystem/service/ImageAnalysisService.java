@@ -57,7 +57,7 @@ public class ImageAnalysisService {
         String base64Image = Base64.getEncoder().encodeToString(imageBytes);
         
         String prompt = """
-            You are an AI assistant for a Municipal Corporation (Nagar Nigam) complaint system.
+            You are an AI assistant for a Smart Civic Complaint Management System.
             Analyze this image and identify civic issues like:
             - Potholes or road damage
             - Garbage accumulation or sanitation issues
